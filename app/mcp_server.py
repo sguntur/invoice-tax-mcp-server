@@ -6,6 +6,7 @@ from typing import Any, Dict
 from mcp.server.fastmcp import FastMCP
 from mcp.server.transport_security import TransportSecuritySettings
 
+from app.models import InvoiceTaxRequest
 from app.tax_engine import calculate_invoice_tax
 
 
@@ -30,9 +31,8 @@ mcp = FastMCP(
     ),
 )
 
-
 @mcp.tool()
-def calculate_invoice_tax_tool(invoice: Dict[str, Any]) -> Dict[str, Any]:
+def calculate_invoice_tax_tool(invoice: InvoiceTaxRequest) -> Dict[str, Any]:
     """Calculate taxes for an invoice using configured regional rules.
 
     Args:
@@ -45,7 +45,6 @@ def calculate_invoice_tax_tool(invoice: Dict[str, Any]) -> Dict[str, Any]:
         line-level tax details, calculation_id for audit correlation, and
         requires_human_oversight when total tax exceeds the configured threshold.
     """
-    return calculate_invoice_tax(invoice)
-
+    return calculate_invoice_tax(invoice.model_dump(mode="json"))
 
 app = mcp.streamable_http_app()

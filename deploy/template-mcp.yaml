@@ -77,3 +77,7 @@ Outputs:
   LambdaFunctionName:
     Description: Lambda function name
     Value: !Ref InvoiceTaxMcpFunction
+
+  UpdateStack:
+    Description: Re-Deploy with this command
+    Value: !Sub "sam deploy --template-file deploy/template-mcp.yaml --stack-name invoice-tax-mcp-server-mcp --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --resolve-image-repos --parameter-overrides ImageUri=${ImageUri} McpAllowedHosts=${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com McpAllowedOrigins=https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/mcp"
