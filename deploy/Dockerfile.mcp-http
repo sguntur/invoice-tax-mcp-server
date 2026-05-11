@@ -1,0 +1,22 @@
+FROM python:3.12-slim
+
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.9.1 \
+  /lambda-adapter /opt/extensions/lambda-adapter
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app ./app
+COPY config ./config
+
+ENV PYTHONPATH=/app
+ENV LOG_LEVEL=INFO
+ENV PORT=8000
+ENV MCP_ALLOWED_HOSTS=localhost:*,127.0.0.1:*,m4g7x97otj.execute-api.us-east-1.amazonaws.com
+ENV MCP_ALLOWED_ORIGINS=http://localhost:*,https://m4g7x97otj.execute-api.us-east-1.amazonaws.com
+
+EXPOSE 8000
+
+CMD ["uvicorn", "app.mcp_server:app", "--host", "0.0.0.0", "--port", "8000"]

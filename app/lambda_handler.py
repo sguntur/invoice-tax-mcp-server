@@ -11,19 +11,17 @@ from pydantic import ValidationError
 from app.logging_config import logger
 from app.tax_engine import calculate_invoice_tax
 
+
 def _response(status_code: int, body: Dict[str, Any]) -> Dict[str, Any]:
-    # Handle CORS origins.
     return {
         "statusCode": status_code,
         "headers": {
             "content-type": "application/json",
-            "access-control-allow-origin": "*",
-            "access-control-allow-methods": "POST,OPTIONS",
-            "access-control-allow-headers": "content-type,x-api-key",
             "cache-control": "no-store",
         },
         "body": json.dumps(body, default=str),
     }
+
 
 def _parse_body(event: Dict[str, Any]) -> Dict[str, Any]:
     body = event.get("body")
@@ -53,11 +51,6 @@ def _authorized(event: Dict[str, Any]) -> bool:
 
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
-    #Handle Preflight request
-    if event.get("requestContext", {}).get("http", {}).get("method") == "OPTIONS":
-        return _response(200, {"ok": True})
-
-    # existing code continues...
     request_id = getattr(context, "aws_request_id", None)
 
     try:

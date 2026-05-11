@@ -93,3 +93,34 @@ when total calculated tax exceeds `$40.00`.
 - **Structured JSON logging:** CloudWatch-compatible observability and audit records.
 - **Non-blocking audit publishing:** keeps request latency low while still producing detailed audit events.
 - **Private ECR:** enterprise-standard Lambda container deployment.
+
+## True MCP Streamable HTTP Endpoint
+
+This project also includes a true MCP Streamable HTTP endpoint.
+
+```text
+/calculate-tax   REST endpoint for ChatGPT Actions
+/mcp             MCP Streamable HTTP endpoint
+```
+
+Main files:
+
+```text
+app/mcp_server.py
+app/mcp_lambda_handler.py
+deploy/template-mcp.yaml
+deploy/Dockerfile.mcp-lambda
+```
+
+Deploy:
+
+```bash
+IMAGE_TAG=mcp-v1 ./deploy/deploy-mcp-private-ecr.sh
+
+sam deploy \
+  --template-file deploy/template-mcp.yaml \
+  --stack-name invoice-tax-mcp-server-mcp \
+  --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
+  --resolve-image-repos \
+  --parameter-overrides ImageUri=<PRIVATE_ECR_MCP_IMAGE_URI>
+```

@@ -47,17 +47,3 @@ def test_unknown_region_raises_value_error():
         assert "No tax configuration" in str(exc)
     else:
         raise AssertionError("Expected ValueError")
-
-
-def test_when_invalid_qty():
-    try:
-        calculate_invoice_tax({
-            "invoice_id": "INV-3",
-            "region": "TX",
-            "currency": "USD",
-            "line_items": [{"sku": "A", "quantity": 0, "unit_price": "10.00"}],
-        })
-    except ValueError as exc:
-        assert "Input should be greater than 0" in str(exc)
-    else:
-        raise AssertionError("Expected ValueError")

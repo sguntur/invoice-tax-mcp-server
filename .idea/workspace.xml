@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/requirements-dev.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements-lambda.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tax_rules.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="Initial commit for mcp-over http REST. To connect using actions.">
+      <change afterPath="$PROJECT_DIR$/app/mcp_server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/run_mcp_http.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy/Dockerfile.mcp-http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy/Dockerfile.mcp-lambda" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy/deploy-mcp-private-ecr.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy/template-mcp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/MCP_STREAMABLE_HTTP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lambda_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/lambda_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/template.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/AWS_DEPLOYMENT.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/AWS_DEPLOYMENT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_tax_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_tax_engine.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,12 +32,12 @@
     &quot;assignee&quot;: &quot;sguntur&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/sguntur/invoice-tax-mcp-server.git&quot;,
-    &quot;accountId&quot;: &quot;f1005db2-6495-44bf-91ad-ca58c6eb8212&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/sguntur/invoice-tax-mcp-server",
+    "accountId": "f1005db2-6495-44bf-91ad-ca58c6eb8212"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3,
   &quot;fromUser&quot;: false
@@ -38,22 +47,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python tests.Python tests for tests.test_tax_engine.test_calculates_tax_for_variable_line_items.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ishanvi/PycharmProjects/invoice-tax-mcp-server&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests for tests.test_tax_engine.test_calculates_tax_for_variable_line_items.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Ishanvi/PycharmProjects/invoice-tax-mcp-server",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ishanvi\PycharmProjects\invoice-tax-mcp-server" />
@@ -111,10 +121,24 @@
       <workItem from="1778461514046" duration="2239000" />
       <workItem from="1778464936512" duration="1120000" />
       <workItem from="1778467425490" duration="9687000" />
+      <workItem from="1778514899625" duration="6594000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit for mcp-over http REST. To connect using actions.">
+      <option name="closed" value="true" />
+      <created>1778515326912</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778515326912</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit for mcp-over http REST. To connect using actions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit for mcp-over http REST. To connect using actions." />
   </component>
 </project>

@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: True MCP Streamable HTTP server using API Gateway, Lambda container image, and Private ECR.
+
+Parameters:
+  ImageUri:
+    Type: String
+    Description: Private ECR image URI for the MCP Lambda container.
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        LOG_LEVEL: INFO
+
+Resources:
+  InvoiceTaxMcpLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: invoice-tax-mcp-lambda-execution-role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  InvoiceTaxMcpFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: invoice-tax-mcp-streamable-http
+      PackageType: Image
+      ImageUri: !Ref ImageUri
+      Role: !GetAtt InvoiceTaxMcpLambdaExecutionRole.Arn
+      Events:
+        McpPost:
+          Type: HttpApi
+          Properties:
+            Path: /mcp
+            Method: POST
+        McpGet:
+          Type: HttpApi
+          Properties:
+            Path: /mcp
+            Method: GET
+        McpDelete:
+          Type: HttpApi
+          Properties:
+            Path: /mcp
+            Method: DELETE
+        McpOptions:
+          Type: HttpApi
+          Properties:
+            Path: /mcp
+            Method: OPTIONS
+
+Outputs:
+  McpServerUrl:
+    Description: MCP Streamable HTTP endpoint
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/mcp"
+
+  LambdaFunctionName:
+    Description: Lambda function name
+    Value: !Ref InvoiceTaxMcpFunction

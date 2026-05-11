@@ -1,80 +1,31 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Invoice Tax MCP Server using API Gateway, Lambda container image, and Private ECR.
+Description: Invoice Tax MCP Server demo endpoint using Lambda container image and private ECR.
 
 Parameters:
   ImageUri:
     Type: String
     Description: Private ECR image URI for the Lambda container.
-
   ApiKey:
     Type: String
     Default: ''
     NoEcho: true
     Description: Optional API key. Leave empty to disable API key check.
 
-  AuditTableName:
-    Type: String
-    Default: invoice-tax-audit
-    Description: DynamoDB table name for audit events.
-
-Globals:
-  Function:
-    Timeout: 10
-    MemorySize: 256
-    Architectures:
-      - x86_64
-    Environment:
-      Variables:
-        LOG_LEVEL: INFO
-        API_KEY: !Ref ApiKey
-        AUDIT_TABLE_NAME: !Ref AuditTableName
-
 Resources:
-  InvoiceTaxAuditTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: !Ref AuditTableName
-      BillingMode: PAY_PER_REQUEST
-      AttributeDefinitions:
-        - AttributeName: calculation_id
-          AttributeType: S
-      KeySchema:
-        - AttributeName: calculation_id
-          KeyType: HASH
-
-  InvoiceTaxLambdaExecutionRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: invoice-tax-lambda-execution-role
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-                - lambda.amazonaws.com
-            Action:
-              - sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-      Policies:
-        - PolicyName: invoice-tax-dynamodb-audit-policy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action:
-                  - dynamodb:PutItem
-                Resource: !GetAtt InvoiceTaxAuditTable.Arn
-
   InvoiceTaxFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: invoice-tax-mcp-server
       PackageType: Image
       ImageUri: !Ref ImageUri
-      Role: !GetAtt InvoiceTaxLambdaExecutionRole.Arn
+      MemorySize: 256
+      Timeout: 10
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          LOG_LEVEL: INFO
+          API_KEY: !Ref ApiKey
       Events:
         CalculateTax:
           Type: HttpApi
@@ -86,11 +37,3 @@ Outputs:
   ApiUrl:
     Description: Public API Gateway endpoint
     Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/calculate-tax"
-
-  LambdaFunctionName:
-    Description: Lambda function name
-    Value: !Ref InvoiceTaxFunction
-
-  AuditTable:
-    Description: DynamoDB audit table
-    Value: !Ref InvoiceTaxAuditTable

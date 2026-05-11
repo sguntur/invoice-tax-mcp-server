@@ -43,22 +43,5 @@ sam deploy \
   --template-file deploy/template.yaml \
   --stack-name invoice-tax-mcp-server \
   --capabilities CAPABILITY_IAM \
-  --parameter-overrides ImageUri=412794759828.dkr.ecr.us-east-1.amazonaws.com/invoice-tax-mcp-server:latest
+  --parameter-overrides ImageUri=<PRIVATE_ECR_IMAGE_URI>
 ```
-
-curl -i -X POST "https://bo33rft1g8.execute-api.us-east-1.amazonaws.com/calculate-tax" \
-  -H "content-type: application/json" \
-  -d '{
-    "invoice_id": "INV-1001",
-    "region": "TX",
-    "currency": "USD",
-    "line_items": [
-      {
-        "sku": "SOFT-1",
-        "description": "Software license",
-        "quantity": 3,
-        "unit_price": "150.00",
-        "category": "software"
-      }
-    ]
-  }'
