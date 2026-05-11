@@ -1,0 +1,13 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "invoice-tax-mcp-server"
+resolve_s3 = true
+s3_prefix = "invoice-tax-mcp-server"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "ImageUri=\"412794759828.dkr.ecr.us-east-1.amazonaws.com/invoice-tax-mcp-server:latest\" AuditTableName=\" \""
+image_repositories = []
+
+[default.global.parameters]
+region = "us-east-1"

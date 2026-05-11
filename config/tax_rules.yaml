@@ -1,0 +1,22 @@
+regions:
+  TX:
+    default_rate: 0.0825
+    categories:
+      software: 0.0825
+      grocery: 0.0000
+      service: 0.0625
+  CA:
+    default_rate: 0.0725
+    categories:
+      software: 0.0875
+      grocery: 0.0000
+      service: 0.0725
+  NY:
+    default_rate: 0.08875
+    categories:
+      software: 0.08875
+      grocery: 0.0000
+      service: 0.04
+
+oversight:
+  tax_threshold: 40.00

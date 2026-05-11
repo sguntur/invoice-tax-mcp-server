@@ -1,0 +1,12 @@
+FROM public.ecr.aws/lambda/python:3.12
+
+COPY requirements.txt ${LAMBDA_TASK_ROOT}/
+RUN pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/requirements.txt
+
+COPY app ${LAMBDA_TASK_ROOT}/app
+COPY config ${LAMBDA_TASK_ROOT}/config
+
+ENV PYTHONPATH=${LAMBDA_TASK_ROOT}
+ENV LOG_LEVEL=INFO
+
+CMD ["app.lambda_handler.handler"]
