@@ -1,20 +1,18 @@
-# True MCP Streamable HTTP Endpoint
+# MCP Streamable HTTP Endpoint
 
-This project now supports two integration modes:
+This project supports two integration modes:
 
 ```text
-/calculate-tax   REST JSON endpoint for ChatGPT Actions
 /mcp             MCP Streamable HTTP endpoint for MCP-compatible clients
+/calculate-tax   REST JSON endpoint for simple integrations and smoke tests
 ```
 
-## Added Files
+## Files
 
 ```text
 app/mcp_server.py
-app/mcp_lambda_handler.py
 app/run_mcp_http.py
 deploy/Dockerfile.mcp-lambda
-deploy/Dockerfile.mcp-http
 deploy/deploy-mcp-private-ecr.sh
 deploy/template-mcp.yaml
 ```
@@ -31,6 +29,37 @@ The local MCP server starts on:
 ```text
 http://localhost:8000/mcp
 ```
+
+## Tool Contract
+
+Tool name:
+
+```text
+calculate_invoice_tax_tool
+```
+
+Input envelope:
+
+```json
+{
+  "invoice": {
+    "invoice_id": "INV-1001",
+    "region": "TX",
+    "currency": "USD",
+    "line_items": [
+      {
+        "sku": "SOFT-1",
+        "description": "Software license",
+        "quantity": 3,
+        "unit_price": "150.00",
+        "category": "software"
+      }
+    ]
+  }
+}
+```
+
+Output includes invoice totals, line-level tax, `calculation_id`, and `requires_human_oversight`.
 
 ## Deploy MCP Lambda Image
 
@@ -57,6 +86,17 @@ Output:
 McpServerUrl = https://<api-id>.execute-api.<region>.amazonaws.com/mcp
 ```
 
+## Transport Security
+
+The MCP server enables DNS rebinding protection. Configure these environment variables in the deployed environment:
+
+```text
+MCP_ALLOWED_HOSTS=<api-id>.execute-api.<region>.amazonaws.com
+MCP_ALLOWED_ORIGINS=https://<api-id>.execute-api.<region>.amazonaws.com
+```
+
+Localhost values are included by default for local development.
+
 ## Lambda Note
 
-This implementation is intended for stateless MCP Streamable HTTP calls. For long-lived streaming/session-heavy MCP usage, ECS/Fargate is a better hosting target.
+This implementation is intended for stateless MCP Streamable HTTP calls. For long-lived streaming or session-heavy MCP usage, ECS/Fargate is a better hosting target.

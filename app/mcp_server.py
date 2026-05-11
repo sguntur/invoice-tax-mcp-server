@@ -21,11 +21,11 @@ mcp = FastMCP(
         enable_dns_rebinding_protection=True,
         allowed_hosts=_csv_env(
             "MCP_ALLOWED_HOSTS",
-            "localhost,localhost:*,127.0.0.1,127.0.0.1:*,m4g7x97otj.execute-api.us-east-1.amazonaws.com",
+            "localhost,localhost:*,127.0.0.1,127.0.0.1:*",
         ),
         allowed_origins=_csv_env(
             "MCP_ALLOWED_ORIGINS",
-            "http://localhost,http://localhost:*,https://m4g7x97otj.execute-api.us-east-1.amazonaws.com",
+            "http://localhost,http://localhost:*",
         ),
     ),
 )
@@ -33,7 +33,18 @@ mcp = FastMCP(
 
 @mcp.tool()
 def calculate_invoice_tax_tool(invoice: Dict[str, Any]) -> Dict[str, Any]:
-    """Calculate invoice tax and return totals, line-level tax, and oversight signal."""
+    """Calculate taxes for an invoice using configured regional rules.
+
+    Args:
+        invoice: Invoice request containing invoice_id, region, optional currency,
+            and a non-empty line_items array. Each line item requires sku,
+            quantity, unit_price, and optional category/description.
+
+    Returns:
+        A deterministic tax calculation with subtotal, tax_total, grand_total,
+        line-level tax details, calculation_id for audit correlation, and
+        requires_human_oversight when total tax exceeds the configured threshold.
+    """
     return calculate_invoice_tax(invoice)
 
 

@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="Initial commit for mcp-over http REST. To connect using actions.">
-      <change afterPath="$PROJECT_DIR$/app/mcp_server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/run_mcp_http.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deploy/Dockerfile.mcp-http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deploy/Dockerfile.mcp-lambda" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deploy/deploy-mcp-private-ecr.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deploy/template-mcp.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/MCP_STREAMABLE_HTTP.md" afterDir="false" />
+    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="Added true mcp streamable http over lambda.">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lambda_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/lambda_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/template.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/mcp_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/mcp_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/Dockerfile.mcp-http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/Dockerfile.mcp-lambda" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/Dockerfile.mcp-lambda" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/AI_CONTEXT.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/AI_CONTEXT.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/AWS_DEPLOYMENT.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/AWS_DEPLOYMENT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/MCP_STREAMABLE_HTTP.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MCP_STREAMABLE_HTTP.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_tax_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_tax_engine.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +116,7 @@
       <workItem from="1778461514046" duration="2239000" />
       <workItem from="1778464936512" duration="1120000" />
       <workItem from="1778467425490" duration="9687000" />
-      <workItem from="1778514899625" duration="6594000" />
+      <workItem from="1778514899625" duration="7554000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit for mcp-over http REST. To connect using actions.">
       <option name="closed" value="true" />
@@ -131,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778515326912</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added true mcp streamable http over lambda.">
+      <option name="closed" value="true" />
+      <created>1778522293256</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778522293256</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +142,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit for mcp-over http REST. To connect using actions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit for mcp-over http REST. To connect using actions." />
+    <MESSAGE value="Added true mcp streamable http over lambda." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added true mcp streamable http over lambda." />
   </component>
 </project>

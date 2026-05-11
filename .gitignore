@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local/IDE files
+.idea/
+.vscode/
+.env
+.env.*
+
+# Build/deploy artifacts
+.aws-sam/
+*.zip
+*.7z
+
+# Local audit output
+*.audit.jsonl
+audit.log
