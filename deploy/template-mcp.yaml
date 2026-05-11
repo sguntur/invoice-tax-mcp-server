@@ -6,7 +6,12 @@ Parameters:
   ImageUri:
     Type: String
     Description: Private ECR image URI for the MCP Lambda container.
-
+  McpAllowedHosts:
+    Type: String
+    Default: "localhost,localhost:*,127.0.0.1,127.0.0.1:*"
+  McpAllowedOrigins:
+    Type: String
+    Default: "localhost,localhost:*,127.0.0.1,127.0.0.1:*"
 Globals:
   Function:
     Timeout: 30
@@ -16,7 +21,8 @@ Globals:
     Environment:
       Variables:
         LOG_LEVEL: INFO
-
+        MCP_ALLOWED_HOSTS: !Ref McpAllowedHosts
+        MCP_ALLOWED_ORIGINS: !Ref McpAllowedOrigins
 Resources:
   InvoiceTaxMcpLambdaExecutionRole:
     Type: AWS::IAM::Role
