@@ -20,13 +20,15 @@ aws ecr describe-repositories --repository-names "${APP_NAME}" --region "${AWS_R
 
 aws ecr get-login-password --region "${AWS_REGION}"   | docker login --username AWS --password-stdin "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
 
-docker build -f deploy/Dockerfile.lambda -t "${APP_NAME}:${IMAGE_TAG}" .
-docker tag "${APP_NAME}:latest" "${IMAGE_URI}"
-docker push "${IMAGE_URI}"
+docker buildx inspect invoice-tax-builder >/dev/null 2>&1   || docker buildx create --name invoice-tax-builder --use
+
+docker buildx use invoice-tax-builder
+
+docker buildx build   --platform "${PLATFORM}"   --provenance=false   -f deploy/Dockerfile.lambda   -t "${IMAGE_URI}"   --push   .
 
 echo ""
 echo "MCP image pushed successfully:"
 echo "${IMAGE_URI}"
 echo ""
 echo "Deploy with:"
-echo "sam deploy --template-file deploy/template.yaml --stack-name invoice-tax-mcp-server --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --resolve-image-repos --parameter-overrides ImageUri=${IMAGE_URI} McpAllowedHosts='*' McpAllowedOrigins='*'"
+echo "sam deploy --template-file deploy/template.yaml --stack-name invoice-tax-lambda-server --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --resolve-image-repos --parameter-overrides ImageUri=${IMAGE_URI}"

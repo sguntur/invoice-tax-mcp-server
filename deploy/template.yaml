@@ -11,17 +11,17 @@ Parameters:
     Default: ''
     NoEcho: true
     Description: Optional API key. Leave empty to disable API key check.
-
 Resources:
   InvoiceTaxFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: invoice-tax-lambda-http
       PackageType: Image
       ImageUri: !Ref ImageUri
       MemorySize: 256
       Timeout: 10
       Architectures:
-        - arm64
+        - x86_64
       Environment:
         Variables:
           LOG_LEVEL: INFO
