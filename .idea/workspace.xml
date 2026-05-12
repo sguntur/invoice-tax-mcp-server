@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="Added configurable mcp allowed hosts and origins.">
+    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="Added configurable mcp allowed hosts and origins. Updated to publish mcp schema.">
+      <change beforePath="$PROJECT_DIR$/.idea/invoice-tax-mcp-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/invoice-tax-mcp-server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/mcp_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/mcp_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy-mcp-private-ecr.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-mcp-private-ecr.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/template-mcp.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/template-mcp.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tax_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/tax_engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,12 +21,12 @@
     &quot;assignee&quot;: &quot;sguntur&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/sguntur/invoice-tax-mcp-server",
-    "accountId": "f1005db2-6495-44bf-91ad-ca58c6eb8212"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sguntur/invoice-tax-mcp-server&quot;,
+    &quot;accountId&quot;: &quot;f1005db2-6495-44bf-91ad-ca58c6eb8212&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3,
   &quot;fromUser&quot;: false
@@ -36,23 +36,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for tests.test_tax_engine.test_calculates_tax_for_variable_line_items.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Ishanvi/PycharmProjects/invoice-tax-mcp-server",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for tests.test_tax_engine.test_calculates_tax_for_variable_line_items.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ishanvi/PycharmProjects/invoice-tax-mcp-server&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ishanvi\PycharmProjects\invoice-tax-mcp-server" />
@@ -110,7 +110,8 @@
       <workItem from="1778461514046" duration="2239000" />
       <workItem from="1778464936512" duration="1120000" />
       <workItem from="1778467425490" duration="9687000" />
-      <workItem from="1778514899625" duration="10282000" />
+      <workItem from="1778514899625" duration="18507000" />
+      <workItem from="1778555786833" duration="2090000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit for mcp-over http REST. To connect using actions.">
       <option name="closed" value="true" />
@@ -144,7 +145,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778523547421</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added configurable mcp allowed hosts and origins. Updated to publish mcp schema.">
+      <option name="closed" value="true" />
+      <created>1778525994895</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778525994895</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +164,7 @@
     <MESSAGE value="Added true mcp streamable http over lambda." />
     <MESSAGE value="Cleaned up repository." />
     <MESSAGE value="Added configurable mcp allowed hosts and origins." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added configurable mcp allowed hosts and origins." />
+    <MESSAGE value="Added configurable mcp allowed hosts and origins. Updated to publish mcp schema." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added configurable mcp allowed hosts and origins. Updated to publish mcp schema." />
   </component>
 </project>

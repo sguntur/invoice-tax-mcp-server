@@ -85,9 +85,15 @@ def calculate_invoice_tax(payload: Dict[str, Any]) -> Dict[str, Any]:
         calculation_id=calculation_id,
         invoice_id=request.invoice_id,
         region=request.region,
-        request=request.model_dump(mode="json"),
+        request={
+            "invoice_id": request.invoice_id,
+            "region": request.region,
+            "currency": request.currency,
+            "line_items": [item.model_dump(mode="json") for item in request.line_items],
+        },
         response=response,
     )
+    
     publish_audit_event(audit_record)
 
     return response
