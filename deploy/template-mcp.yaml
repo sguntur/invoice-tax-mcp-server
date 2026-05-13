@@ -16,11 +16,6 @@ Parameters:
     Type: String
     Default: ""
     Description: Optional S3 bucket containing tax_rules.yaml.
-  ApiKey:
-    Type: String
-    Default: ''
-    NoEcho: true
-    Description: Optional API key. Leave empty to disable API key check.
   TaxRulesS3Key:
     Type: String
     Default: tax_rules.yaml
@@ -39,7 +34,6 @@ Globals:
     Environment:
       Variables:
         LOG_LEVEL: INFO
-        API_KEY: !Ref ApiKey
         MCP_ALLOWED_HOSTS: !Ref McpAllowedHosts
         MCP_ALLOWED_ORIGINS: !Ref McpAllowedOrigins
         TAX_RULES_S3_BUCKET: !Ref TaxRulesS3Bucket
