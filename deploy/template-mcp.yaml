@@ -11,7 +11,25 @@ Parameters:
     Default: "localhost,localhost:*,127.0.0.1,127.0.0.1:*"
   McpAllowedOrigins:
     Type: String
-    Default: "localhost,localhost:*,127.0.0.1,127.0.0.1:*"
+    Default: "http://localhost,http://localhost:*,http://127.0.0.1,http://127.0.0.1:*"
+  TaxRulesS3Bucket:
+    Type: String
+    Default: ""
+    Description: Optional S3 bucket containing tax_rules.yaml.
+  ApiKey:
+    Type: String
+    Default: ''
+    NoEcho: true
+    Description: Optional API key. Leave empty to disable API key check.
+  TaxRulesS3Key:
+    Type: String
+    Default: tax_rules.yaml
+    Description: S3 key for tax rules config.
+  TaxRulesCacheTtlSeconds:
+    Type: Number
+    Default: 60
+    Description: Config cache TTL in seconds.
+
 Globals:
   Function:
     Timeout: 30
@@ -21,8 +39,13 @@ Globals:
     Environment:
       Variables:
         LOG_LEVEL: INFO
+        API_KEY: !Ref ApiKey
         MCP_ALLOWED_HOSTS: !Ref McpAllowedHosts
         MCP_ALLOWED_ORIGINS: !Ref McpAllowedOrigins
+        TAX_RULES_S3_BUCKET: !Ref TaxRulesS3Bucket
+        TAX_RULES_S3_KEY: !Ref TaxRulesS3Key
+        TAX_RULES_CACHE_TTL_SECONDS: !Ref TaxRulesCacheTtlSeconds
+
 Resources:
   InvoiceTaxMcpLambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -39,6 +62,16 @@ Resources:
               - sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: invoice-tax-config-s3-read-policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                Resource: !Sub "arn:aws:s3:::${TaxRulesS3Bucket}/${TaxRulesS3Key}"
 
   InvoiceTaxMcpFunction:
     Type: AWS::Serverless::Function
@@ -80,4 +113,4 @@ Outputs:
 
   UpdateStack:
     Description: Re-Deploy with this command
-    Value: !Sub "sam deploy --template-file deploy/template-mcp.yaml --stack-name invoice-tax-mcp-server-mcp --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --resolve-image-repos --parameter-overrides ImageUri=${ImageUri} McpAllowedHosts=${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com McpAllowedOrigins=https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/mcp"
+    Value: !Sub "sam deploy --template-file deploy/template-mcp.yaml --stack-name invoice-tax-mcp-server-mcp --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --resolve-image-repos --parameter-overrides ImageUri=${ImageUri} McpAllowedHosts=${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com McpAllowedOrigins=https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com TaxRulesS3Bucket=invoice-tax-config TaxRulesS3Key=tax_rules.yaml TaxRulesCacheTtlSeconds=60"

@@ -16,20 +16,6 @@ deploy/Dockerfile.mcp-lambda
 deploy/deploy-mcp-private-ecr.sh
 deploy/template-mcp.yaml
 ```
-
-## Local MCP HTTP Run
-
-```bash
-pip install -r requirements.txt
-python -m app.run_mcp_http
-```
-
-The local MCP server starts on:
-
-```text
-http://localhost:8000/mcp
-```
-
 ## Tool Contract
 
 Tool name:
