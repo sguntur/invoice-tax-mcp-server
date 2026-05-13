@@ -11,18 +11,6 @@ Parameters:
     Default: ''
     NoEcho: true
     Description: Optional API key. Leave empty to disable API key check.
-  TaxRulesS3Bucket:
-    Type: String
-    Default: ""
-    Description: Optional S3 bucket containing tax_rules.yaml.
-  TaxRulesS3Key:
-    Type: String
-    Default: tax_rules.yaml
-    Description: S3 key for tax rules config.
-  TaxRulesCacheTtlSeconds:
-    Type: Number
-    Default: 60
-    Description: Config cache TTL in seconds.
 Resources:
   InvoiceTaxFunction:
     Type: AWS::Serverless::Function
@@ -38,16 +26,12 @@ Resources:
         Variables:
           LOG_LEVEL: INFO
           API_KEY: !Ref ApiKey
-          TAX_RULES_S3_BUCKET: !Ref TaxRulesS3Bucket
-          TAX_RULES_S3_KEY: !Ref TaxRulesS3Key
-          TAX_RULES_CACHE_TTL_SECONDS: !Ref TaxRulesCacheTtlSeconds
       Events:
         CalculateTax:
           Type: HttpApi
           Properties:
             Path: /calculate-tax
             Method: POST
-
 Outputs:
   ApiUrl:
     Description: Public API Gateway endpoint
