@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="Changes made to lamdbda over http. also made few tweaks.">
+    <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="Loading config from s3 bucket and falling back to local config.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/run_mcp_http.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/deploy-mcp-private-ecr.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-mcp-private-ecr.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/template-mcp.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/template-mcp.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/template.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/MCP_STREAMABLE_HTTP.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MCP_STREAMABLE_HTTP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +111,7 @@
       <workItem from="1778464936512" duration="1120000" />
       <workItem from="1778467425490" duration="9687000" />
       <workItem from="1778514899625" duration="18507000" />
-      <workItem from="1778555786833" duration="17930000" />
+      <workItem from="1778555786833" duration="18110000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit for mcp-over http REST. To connect using actions.">
       <option name="closed" value="true" />
@@ -176,7 +169,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778560096967</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Loading config from s3 bucket and falling back to local config.">
+      <option name="closed" value="true" />
+      <created>1778699692114</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778699692114</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Loading config from s3 bucket and falling back to local config.">
+      <option name="closed" value="true" />
+      <created>1778699696763</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778699696763</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +199,7 @@
     <MESSAGE value="Added configurable mcp allowed hosts and origins. Updated to publish mcp schema." />
     <MESSAGE value="Updated cft for lambda over http. Also fixed issue with mcp modeldump." />
     <MESSAGE value="Changes made to lamdbda over http. also made few tweaks." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes made to lamdbda over http. also made few tweaks." />
+    <MESSAGE value="Loading config from s3 bucket and falling back to local config." />
+    <option name="LAST_COMMIT_MESSAGE" value="Loading config from s3 bucket and falling back to local config." />
   </component>
 </project>
