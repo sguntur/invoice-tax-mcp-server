@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29bb34a1-cad6-463a-92a6-656edd512945" name="Changes" comment="cleanup">
-      <change afterPath="$PROJECT_DIR$/docs/Assessment.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-private-ecr.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/template.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="34" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,6 +28,10 @@
     &quot;accountId&quot;: &quot;f1005db2-6495-44bf-91ad-ca58c6eb8212&quot;
   }
 }</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3,
   &quot;fromUser&quot;: false
@@ -40,6 +45,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python tests.Python tests for tests.test_tax_engine.test_calculates_tax_for_variable_line_items.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -113,7 +119,7 @@
       <workItem from="1778464936512" duration="1120000" />
       <workItem from="1778467425490" duration="9687000" />
       <workItem from="1778514899625" duration="18507000" />
-      <workItem from="1778555786833" duration="22131000" />
+      <workItem from="1778555786833" duration="24626000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit for mcp-over http REST. To connect using actions.">
       <option name="closed" value="true" />
@@ -203,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778700080326</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="cleanup">
+      <option name="closed" value="true" />
+      <created>1778703983076</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778703983076</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

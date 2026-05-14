@@ -65,25 +65,6 @@ pip install -r requirements-dev.txt
 python -m pytest
 ```
 
-## Local REST Demo
-
-```bash
-python -m app.demo
-```
-
-## Local MCP Server
-
-```bash
-pip install -r requirements.txt
-python -m app.run_mcp_http
-```
-
-The MCP endpoint is available at:
-
-```text
-http://localhost:8000/mcp
-```
-
 ## REST Request Example
 
 ```json
